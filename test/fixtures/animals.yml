@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  common_name: MyString
+  scientific_name: MyString
+  category: MyString
+  description: MyText
+  approachable: MyText
+  status: MyString
+  image: MyString
+
+two:
+  common_name: MyString
+  scientific_name: MyString
+  category: MyString
+  description: MyText
+  approachable: MyText
+  status: MyString
+  image: MyString
