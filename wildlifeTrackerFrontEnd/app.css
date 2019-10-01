@@ -22,6 +22,11 @@ header {
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
+
+*{
+    font-family: 'Roboto', sans-serif;
+} 
+
 ul {
     display: flex;
     flex-direction: row;
@@ -36,6 +41,34 @@ button{
     margin-right: 0.5rem;
 }
 
-main{
-    font-family: 'Roboto', sans-serif;
+.categories{
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
 }
+
+.categories > button{
+    flex-flow: flex-end;
+    justify-content: center;
+    padding: 3rem;
+    width: 150px;
+    margin: 0.5rem;
+
+} 
+
+.categories > p{
+    justify-self: center;
+} 
+
+img {
+    width: 150px;
+} 
+
+
+
+
+
+
+
+
+
