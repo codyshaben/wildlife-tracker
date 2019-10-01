@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 2019_10_01_060515) do
   end
 
   create_table "user_animals", force: :cascade do |t|
-    t.integer "users_id"
-    t.integer "animals_id"
+    t.integer "user_id"
+    t.integer "animal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["animals_id"], name: "index_user_animals_on_animals_id"
-    t.index ["users_id"], name: "index_user_animals_on_users_id"
+    t.index ["animal_id"], name: "index_user_animals_on_animal_id"
+    t.index ["user_id"], name: "index_user_animals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
