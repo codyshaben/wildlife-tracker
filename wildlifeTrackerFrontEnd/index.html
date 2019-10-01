@@ -14,12 +14,29 @@
         <nav>
             <ul>
                 <button type="button">Home</button>
-                <button type="button">Mammals</button>
-                <button type="button">Reptiles</button>
-                <button type="button">Birds</button>
+                
             </ul>
         </nav>
     </header>
+    <main>
+        <form class="signInForm" action="http://localhost:3000/users" method="POST">
+
+            <label for="username"> Username </label>
+            <input type="text" name="username" id="username"/>
+
+            <label for="password"> Password </label>
+            <input type="text" name="password" id="password"/>
+
+            <input type="submit" value="Sign In" id="signIn"/>
+        
+        </form>
+        <section class="categories">
+                
+        </section>
+        <section class="userInfo">
+                <!-- <p>What you have seen:</p> -->
+        </section>
+    </main>
     <script src="index.js"></script>
 </body>
 </html>
