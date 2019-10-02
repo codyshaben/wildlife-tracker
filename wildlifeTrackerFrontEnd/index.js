@@ -1,6 +1,8 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    const animalURL = 'http://localhost:3000/animals'
-    
+    const animalURL = 'http://localhost:3000/api/v1/animals'
+    const addAnimalsURL = 'http://localhost:3000/api/v1/addAnimal'
     const mammalsButton = document.createElement("button")
     const reptilesButton = document.createElement("button")
     const birdsButton = document.createElement("button")
@@ -8,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const categories = document.querySelector(".categories")
     const animalContainer = document.createElement('div')
 
+    
     
     homeButton.addEventListener("click", event => {
         console.log(event)
@@ -24,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showBirds(response)
             showReptiles(response)
         })
+
 
     function hideSignIn(){
         signIn = document.querySelector("#signIn")
@@ -91,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } 
 
 
+   
     function createCards(animal) {
             const animalCard = document.createElement('div')
             const commonName = document.createElement('h1')
@@ -101,9 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = document.createElement('h6')
             const image = document.createElement('img')
             const addAnimalButton = document.createElement('button')
+            addAnimalButton.className = "add-animal-button"
+            
 
             animalCard.className = "animal-card"
-            addAnimalButton.className = "add-animal-button"
+            
             
             commonName.innerText = animal.common_name
             scientificName.innerText = 'Scientific Name: ' + animal.scientific_name
@@ -113,6 +120,23 @@ document.addEventListener('DOMContentLoaded', () => {
             status.innerText = animal.status
             image.src = animal.image
             addAnimalButton.innerText = "Add Animal"
+
+            addAnimalButton.addEventListener('click',event => {
+                console.log(event)
+                const animalToAdd = event.target.parentNode
+                fetch(addAnimalsURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }, 
+                    body: JSON.stringify(
+                        {
+                            user_id: 1, 
+                            animal_id: animal.id
+                        }
+                    )
+                }).then(console.log(animalToAdd))
+            })
             
             animalCard.appendChild(image)
             animalCard.append(commonName, scientificName, category, description, approachable, addAnimalButton)
