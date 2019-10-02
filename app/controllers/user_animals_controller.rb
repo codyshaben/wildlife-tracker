@@ -1,2 +1,0 @@
-class UserAnimalsController < ApplicationController
-end

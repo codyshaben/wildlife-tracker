@@ -1,4 +1,9 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
+    def index
+        @users = User.all 
+        render json: @users, include: :animals
+    end
+    
     def create
         @user = User.create(user_params)
 
@@ -6,9 +11,6 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-
-
-
         @user.update(user_params)
 
         render json: { user_id: @user.id }
