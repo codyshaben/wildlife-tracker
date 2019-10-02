@@ -6,9 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const birdsButton = document.createElement("button")
     const homeButton = document.querySelector("#home")
     const categories = document.querySelector(".categories")
+    const animalContainer = document.createElement('div')
+
     
     homeButton.addEventListener("click", event => {
+        console.log(event)
         showHomePage()
+        hideMammals()
+        hideSignIn()
     })
     
     fetch(animalURL)
@@ -36,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showHomePage(){
+        const buttonContainer = document.createElement("div")
         const p = document.createElement("p")
 
         p.innerText = "What did you see?"
@@ -43,8 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         reptilesButton.innerText = "Reptiles"
         birdsButton.innerText = "Birds" 
         
-        categories.appendChild(p)
-        categories.append(mammalsButton, reptilesButton, birdsButton)
+        buttonContainer.append(mammalsButton, reptilesButton, birdsButton)
+        categories.append(p, buttonContainer)
+        document.body.appendChild(categories)
     } 
 
     function showMammals(animals) {
@@ -56,7 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
             hideHomePage()
 
         })
+    } 
+
+    function hideMammals(){
+        animalContainer.style.display = "none"
     }
+    
 
     function showBirds(animals) {
         birdsButton.addEventListener('click', event => {
@@ -76,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             hideHomePage()
         })
-    }
+    } 
+
 
     function createCards(animal) {
             const animalCard = document.createElement('div')
@@ -103,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             animalCard.appendChild(image)
             animalCard.append(commonName, scientificName, category, description, approachable, addAnimalButton)
-            document.body.appendChild(animalCard)
+            animalContainer.append(animalCard)
+            document.body.appendChild(animalContainer)
     }
 })
 
