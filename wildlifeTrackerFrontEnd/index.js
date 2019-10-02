@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeButton = document.querySelector("#home")
     const categories = document.querySelector(".categories")
     const animalContainer = document.createElement('div')
+    animalContainer.className = "animalContainer"
 
     
     
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showHomePage(){
         const buttonContainer = document.createElement("div")
+        buttonContainer.className = "buttonContainer"
         const p = document.createElement("p")
 
         p.innerText = "What did you see?"

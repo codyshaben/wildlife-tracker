@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap'); 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+* {
+    font-family: 'Roboto', sans-serif;
+}
 header {
     display: flex;
     flex-direction: column;
@@ -29,8 +32,10 @@ ul {
     justify-content: flex-end;
 }
 
+
+
 button {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Roboto', sans-serif;
     background-color: #020d22;
     color: #f7cdab;
     border-color: #020d22;
@@ -56,7 +61,7 @@ span {
     flex-direction: row; */
     justify-content: center;
     margin: auto;
-    width: 20%;
+    width: 30%;
 }
 
 input{
@@ -82,18 +87,24 @@ h5 {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
+} 
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    
 }
 
-.categories > button {
-    /* flex-flow: flex-end;
-    justify-content: center; */
-    padding: 2rem;
+.buttonContainer > button {
+    font-family: 'Indie Flower', cursive;
+    padding: 4rem;
     width: 250px;
     margin: 0.5rem;
 }
 
 .categories > p {
+    display: inline-block;
     justify-content: center;
+    font-size: 3.5rem;
 }
 
 .animal-card {
@@ -105,6 +116,7 @@ h5 {
     margin-top: 2rem;
     font: #020d22;
     width: 500px;
+    margin: 1rem;
     /* opacity: .7; */
 }
 
@@ -119,6 +131,14 @@ h5 {
     margin-top: 1rem;
     width: 17rem;
 }
+
+.animalContainer {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
 
 
 
