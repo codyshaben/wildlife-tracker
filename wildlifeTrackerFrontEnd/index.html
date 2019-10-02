@@ -13,30 +13,25 @@
         <h1 class="title">Wildlife Tracker</h1>
         <nav>
             <ul>
-                <button type="button">Home</button>
-                
+                <button id="home" type="button">Home</button>
+                <button id ="back" type="button">Go Back</button>
             </ul>
         </nav>
     </header>
-    <main>
-        <form class="signInForm" action="http://localhost:3000/users" method="POST">
+        <span class="categories">
+                <form class="signInForm" action="http://localhost:3000/users" method="POST">
 
-            <label for="username"> Username </label>
-            <input type="text" name="username" id="username"/>
-
-            <label for="password"> Password </label>
-            <input type="text" name="password" id="password"/>
-
-            <input type="submit" value="Sign In" id="signIn"/>
+                    <input type="text" name="username" id="username" placeholder="Username"/>
         
-        </form>
-        <section class="categories">
+                    <input type="text" name="password" id="password" placeholder="Password"/>
+        
+                    <input type="submit" value="Sign In" id="signIn"/>
                 
-        </section>
+                </form>
+            </span>
         <section class="userInfo">
                 <!-- <p>What you have seen:</p> -->
         </section>
-    </main>
     <script src="index.js"></script>
 </body>
 </html>
