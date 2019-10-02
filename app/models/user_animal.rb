@@ -1,4 +1,4 @@
 class UserAnimal < ApplicationRecord
-  belongs_to :users
-  belongs_to :animals
+  belongs_to :user
+  belongs_to :animal
 end
