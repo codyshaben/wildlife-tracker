@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :animals
       resources :users
-
+      
+      post 'users', to: 'users#create'
+     
       post 'addAnimal', to: 'users#add_animal'
       # post "login", to: "authentication#login"
     end

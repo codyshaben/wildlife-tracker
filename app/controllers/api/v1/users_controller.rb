@@ -6,7 +6,11 @@ class Api::V1::UsersController < ApplicationController
     
     def create
         @user = User.create(user_params)
-
+        # if @user.save
+        #     render json: @user, status: :created, location: api_v1_users_path(@user)
+        # else
+        #     render json: @user.errors
+        # end
     end
 
     def update
@@ -17,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def add_animal
-        @user_animal = UserAnimal.new(user_animal_params)
+        @user_animal = UserAnimal.create(user_animal_params)
 
         if @user_animal.save
             render json: @user_animal, status: :created
@@ -33,6 +37,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def user_animal_params
-        params.require(:user).permit(:user_id, :animal_id)
+        params.permit(:user_id, :animal_id)
     end
 end
