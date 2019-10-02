@@ -9,12 +9,12 @@ header {
 
 
 .title {
-    font-size: 3.5rem;
+    font-size: 6rem;
     order: 2;
     font-family: 'Indie Flower', cursive;
     justify-self: center;
     align-self: center;
-    margin: 0rem;
+    margin: 0;
     color: #be3400;
     text-shadow:
     -1px -1px 0 #000,
@@ -23,46 +23,104 @@ header {
     1px 1px 0 #000;
 }
 
-*{
-    font-family: 'Roboto', sans-serif;
-} 
-
 ul {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
-button{
-    font-family: 'Roboto', sans-serif;
-    background-color: black;
-    color: white;
+button {
+    font-family: 'Indie Flower', cursive;
+    background-color: #020d22;
+    color: #f7cdab;
     border-color: #020d22;
+    border-radius: 1rem;
     margin-right: 0.5rem;
+    font-size: 2rem;
 }
 
-.categories{
+button:hover {
+    background-color: #041d4b;
+}
+img {
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+span {
+    /* display: flex;
+    flex-direction: row; */
+    justify-content: center;
+    margin: auto;
+    width: 20%;
+}
+
+input{
+    height: 50px;
+    width: 250px;
+    font-size: 1.5rem;
+    margin-top: .5rem;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+h4 {
+    margin: 0;
+}
+
+h5 {
+    margin-top: 0;
+}
+
+.categories {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
 }
 
-.categories > button{
-    flex-flow: flex-end;
-    justify-content: center;
-    padding: 3rem;
-    width: 150px;
+.categories > button {
+    /* flex-flow: flex-end;
+    justify-content: center; */
+    padding: 2rem;
+    width: 250px;
     margin: 0.5rem;
+}
 
-} 
+.categories > p {
+    justify-content: center;
+}
 
-.categories > p{
-    justify-self: center;
-} 
+.animal-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3d9c4; 
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    font: #020d22;
+    width: 500px;
+    /* opacity: .7; */
+}
 
-img {
-    width: 150px;
-} 
+.signInForm {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-top: 5rem;
+}
+
+.add-animal-button {
+    margin-top: 1rem;
+    width: 17rem;
+}
+
+
 
 
 
