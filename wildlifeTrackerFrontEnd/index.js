@@ -1,6 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    
     const allAnimals = []
     const animalURL = 'http://localhost:3000/api/v1/animals'
     const addAnimalsURL = 'http://localhost:3000/api/v1/addAnimal'
@@ -11,9 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeButton = document.querySelector("#home")
     const categories = document.querySelector(".categories")
     const animalContainer = document.createElement('div')
+
     animalContainer.className = "animalContainer"
 
-    
+
+    // event listeners
     
     homeButton.addEventListener("click", event => {
         console.log(event)
@@ -51,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    // functions
+
     function showUserPage() {
         fetch(userAnimalsURL)
         .then(response => response.json())
@@ -65,9 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         })           
     } 
-
-
-    // showUserPage()
 
     function retrieveAnimals() {
         fetch(animalURL)
@@ -84,8 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showHomePage()
         })
     } 
-    
-    
 
     function showHomePage(){
         const buttonContainer = document.createElement("div")
@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(categories)
     } 
 
-   
         function createCards(animal) {
             console.log(animal)
             const animalCard = document.createElement('div')
@@ -146,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             
             animalCard.appendChild(image)
-            animalCard.append(commonName, scientificName, category, description, approachable, addAnimalButton)
+            animalCard.append(commonName, scientificName,category, description, approachable, addAnimalButton)
             animalContainer.append(animalCard)
             document.body.appendChild(animalContainer)
     }
@@ -160,9 +159,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const approachable = document.createElement('p')
         const status = document.createElement('h6')
         const image = document.createElement('img')
+        const removeAnimalButton = document.createElement('button')
+
+        removeAnimalButton.addEventListener('click',event => { 
+            const animalToRemove = event.target.parentNode
+            fetch(addAnimalsURL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify( {
+                    user: {
+                        user_id: 1,
+                        animal_id: animal.id
+                    }
+                })
+            }).then(animalToRemove.remove())
+        })
 
         userCard.className = "user-card"
 
+        removeAnimalButton.innerText = "Remove Animal"
         commonName.innerText = animal.common_name
         scientificName.innerText = 'Scientific Name: ' + animal.scientific_name
         category.innerText = 'Category: ' + animal.category
@@ -171,13 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
         status.innerText = animal.status
         image.src = animal.image
 
-
         userCard.appendChild(image)
-        userCard.append(commonName, scientificName, category, description, approachable)
+        userCard.append(commonName, scientificName, category, description, approachable, removeAnimalButton)
         animalContainer.appendChild(userCard)
         document.body.appendChild(animalContainer)
     }
-    
     hideSignIn() 
     retrieveAnimals()
 })

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
      
       post 'addAnimal', to: 'users#add_animal'
-      # post "login", to: "authentication#login"
+      post "login", to: "authentication#login"
     end
   end
 
