@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeButton = document.querySelector("#home")
     const categories = document.querySelector(".categories")
     const animalContainer = document.createElement('div')
+    const userAnimalContainer = document.createElement('div')
+    const userInfo = document.querySelector(".userInfo")
 
     animalContainer.className = "animalContainer"
+    userAnimalContainer.className= "userAnimalContainer"
 
     // event listeners
     
@@ -78,8 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
             categories.style.display = "none"
         }) 
         const userTitle = document.createElement('h2')
+        userTitle.className = "userTitle"
         userTitle.innerText = "Animal's You've Seen!"
-        document.body.append(userTitle)
+
+        userInfo.append(userTitle)
+        document.body.append(userInfo)
     } 
 
     function retrieveAnimals() {
@@ -192,8 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         userCard.appendChild(image)
         userCard.append(commonName, scientificName, category, description, approachable, removeAnimalButton)
-        animalContainer.appendChild(userCard)
-        document.body.appendChild(animalContainer)
+        userAnimalContainer.appendChild(userCard)
+        userInfo.append(userAnimalContainer)
+        document.body.appendChild(userInfo)
     }
     hideSignIn() 
     retrieveAnimals()
