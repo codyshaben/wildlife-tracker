@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allAnimals = []
     const animalURL = 'http://localhost:3000/api/v1/animals'
     const addAnimalsURL = 'http://localhost:3000/api/v1/addAnimal'
+    const removeAnimalURL = `http://localhost:3000/api/v1/removeAnimal/`
     const userAnimalsURL = 'http://localhost:3000/api/v1/users/1'
     const mammalsButton = document.createElement("button")
     const reptilesButton = document.createElement("button")
@@ -14,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const animalContainer = document.createElement('div')
 
     animalContainer.className = "animalContainer"
-
 
     // event listeners
     
@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allReptiles.forEach(reptile => {
             createCards(reptile)
         })
+        // const reptilesTitle = document.createElement('h2')
+        // reptilesTitle.innerText = "Reptile's"
+        // animalContainer.prepend(reptilesTitle)
     })
 
     birdsButton.addEventListener('click', event => {
@@ -43,7 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
         allBirds.forEach(bird => {
             createCards(bird)
         })
+        // const birdsTitle = document.createElement('h2')
+        // birdsTitle.innerText = "Bird's"
+        // animalContainer.prepend(birdsTitle)
     })
+
     mammalsButton.addEventListener('click', event => {
         animalContainer.innerText = ''
         const allMammals = allAnimals.flat().filter(animal => {
@@ -52,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allMammals.forEach(mammal => {
             createCards(mammal)
         })
+        // const mammalsTitle = document.createElement('h2')
+        // mammalsTitle.innerText = "Mammal's"
+        // animalContainer.prepend(mammalsTitle)
     })
 
     // functions
@@ -62,13 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => {
             animalContainer.innerText = ''
             response.animals.forEach(animal => {
-                createUserCards(animal)
-                
+                createUserCards(animal)  
             })
             console.log(response.animals)
             categories.style.display = "none"
-
-        })           
+        }) 
+        const userTitle = document.createElement('h2')
+        userTitle.innerText = "Animal's You've Seen!"
+        document.body.append(userTitle)
     } 
 
     function retrieveAnimals() {
@@ -163,18 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         removeAnimalButton.addEventListener('click',event => { 
             const animalToRemove = event.target.parentNode
-            fetch(addAnimalsURL, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify( {
-                    user: {
-                        user_id: 1,
-                        animal_id: animal.id
-                    }
-                })
+            fetch(removeAnimalURL + animal.id, {
+                method: 'DELETE',
             }).then(animalToRemove.remove())
         })
 
