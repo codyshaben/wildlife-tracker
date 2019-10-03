@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const animalContainer = document.createElement('div')
     const userAnimalContainer = document.createElement('div')
     const userInfo = document.querySelector(".userInfo")
-
+    const flipCardContainer = document.createElement('div')
+    
+    flipCardContainer.className = "flip-card-container"
     animalContainer.className = "animalContainer"
     userAnimalContainer.className= "userAnimalContainer"
 
@@ -167,8 +169,52 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(animalContainer)
     }
 
+    // function createUserCards(animal){
+    //     const userCard = document.createElement('div')
+    //     const commonName = document.createElement('h1') 
+    //     const scientificName = document.createElement('h4')
+    //     const category = document.createElement('h5')
+    //     const description = document.createElement('p')
+    //     const approachable = document.createElement('p')
+    //     const status = document.createElement('h6')
+    //     const image = document.createElement('img')
+    //     const removeAnimalButton = document.createElement('button')
+
+    //     removeAnimalButton.addEventListener('click',event => { 
+    //         const animalToRemove = event.target.parentNode
+    //         fetch(removeAnimalURL + animal.id, {
+    //             method: 'DELETE',
+    //         }).then(animalToRemove.remove())
+    //     })
+
+    //     userCard.className = "user-card"
+
+    //     removeAnimalButton.innerText = "Remove Animal"
+    //     commonName.innerText = animal.common_name
+    //     scientificName.innerText = 'Scientific Name: ' + animal.scientific_name
+    //     category.innerText = 'Category: ' + animal.category
+    //     description.innerText = animal.description
+    //     approachable.innerText = animal.approachable
+    //     status.innerText = animal.status
+    //     image.src = animal.image
+
+    //     userCard.appendChild(image)
+    //     userCard.append(commonName, scientificName, category, description, approachable, removeAnimalButton)
+    //     userAnimalContainer.appendChild(userCard)
+    //     userInfo.append(userAnimalContainer)
+    //     document.body.appendChild(userInfo)
+    // }
+
     function createUserCards(animal){
-        const userCard = document.createElement('div')
+       
+        const userFlipCard = document.createElement('div')
+        userFlipCard.className = "flip-card"
+        const userFlipCardInner = document.createElement('div')
+        userFlipCardInner.className = "flip-card-inner"
+        const userFlipCardFront = document.createElement('div')
+        userFlipCardFront.className = "flip-card-front"
+        const userFlipCardBack = document.createElement('div')
+        userFlipCardBack.className = "flip-card-back"
         const commonName = document.createElement('h1') 
         const scientificName = document.createElement('h4')
         const category = document.createElement('h5')
@@ -179,28 +225,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const removeAnimalButton = document.createElement('button')
 
         removeAnimalButton.addEventListener('click',event => { 
-            const animalToRemove = event.target.parentNode
+            const animalToRemove = userFlipCard
+            // event.target.parentNode
+            console.log(animalToRemove)
             fetch(removeAnimalURL + animal.id, {
                 method: 'DELETE',
             }).then(animalToRemove.remove())
         })
 
-        userCard.className = "user-card"
+        // userCard.className = "user-card"
 
         removeAnimalButton.innerText = "Remove Animal"
         commonName.innerText = animal.common_name
         scientificName.innerText = 'Scientific Name: ' + animal.scientific_name
         category.innerText = 'Category: ' + animal.category
-        description.innerText = animal.description
+        // description.innerText = animal.description
         approachable.innerText = animal.approachable
         status.innerText = animal.status
         image.src = animal.image
 
-        userCard.appendChild(image)
-        userCard.append(commonName, scientificName, category, description, approachable, removeAnimalButton)
-        userAnimalContainer.appendChild(userCard)
-        userInfo.append(userAnimalContainer)
-        document.body.appendChild(userInfo)
+        userFlipCardFront.append(commonName, image)
+        userFlipCardBack.append(scientificName, category, approachable, removeAnimalButton)
+        userFlipCardInner.append(userFlipCardFront, userFlipCardBack)
+        userFlipCard.append(userFlipCardInner)
+        flipCardContainer.append(userFlipCard)
+        userInfo.append(flipCardContainer)
+        document.body.append(userInfo)
     }
     hideSignIn() 
     retrieveAnimals()

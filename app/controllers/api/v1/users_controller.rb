@@ -25,6 +25,11 @@ class Api::V1::UsersController < ApplicationController
 
         render json: { user_id: @user.id }
     end
+    
+    def remove_animal
+        @user = User.find(1)
+        @user.animals.destroy(params[:animal_id])
+    end
 
     def add_animal
         @user_animal = UserAnimal.create(user_animal_params)
