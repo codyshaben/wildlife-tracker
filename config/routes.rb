@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       
       post 'users', to: 'users#create'
+
      
       post 'addAnimal', to: 'users#add_animal'
       # post "login", to: "authentication#login"

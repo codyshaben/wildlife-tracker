@@ -3,6 +3,12 @@ class Api::V1::UsersController < ApplicationController
         @users = User.all 
         render json: @users, include: :animals
     end
+
+    def show
+        @user = User.find(params[:id])
+
+        render json: @user, include: :animals
+    end
     
     def create
         @user = User.create(user_params)

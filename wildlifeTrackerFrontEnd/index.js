@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allAnimals = []
     const animalURL = 'http://localhost:3000/api/v1/animals'
     const addAnimalsURL = 'http://localhost:3000/api/v1/addAnimal'
+    const userAnimalsURL = 'http://localhost:3000/api/v1/users/1'
     const mammalsButton = document.createElement("button")
     const reptilesButton = document.createElement("button")
     const birdsButton = document.createElement("button")
@@ -20,15 +21,60 @@ document.addEventListener('DOMContentLoaded', () => {
         hideMammals()
         hideSignIn()
     })
-    
+
+    reptilesButton.addEventListener('click', event => {
+        animalContainer.innerText = ''
+        const allReptiles = allAnimals.flat().filter(animal => {
+            return animal.category === "Reptile"
+        })
+        allReptiles.forEach(reptile => {
+            createCards(reptile)
+        })
+    })
+
+    birdsButton.addEventListener('click', event => {
+        animalContainer.innerText = ''
+        const allBirds = allAnimals.flat().filter(animal => {
+            return animal.category === "Bird"
+        })
+        allBirds.forEach(bird => {
+            createCards(bird)
+        })
+    })
+    mammalsButton.addEventListener('click', event => {
+        animalContainer.innerText = ''
+        const allMammals = allAnimals.flat().filter(animal => {
+            return animal.category === "Mammal"
+        })
+        allMammals.forEach(mammal => {
+            createCards(mammal)
+        })
+    })
+
+    function showUserPage() {
+        fetch(userAnimalsURL)
+        .then(response => response.json())
+        .then(response => {
+            animalContainer.innerText = ''
+            response.animals.forEach(animal => {
+                createCards(animal)
+                
+            })
+            console.log(response.animals)
+            categories.style.display = "none"
+
+        })           
+    } 
+
+
+    // showUserPage()
+
     function retrieveAnimals() {
         fetch(animalURL)
             .then(response => response.json())
             .then(animals => {allAnimals.push(animals)
             })
     }
-    
-        console.log(allAnimals)
 
     function hideSignIn(){
         signIn = document.querySelector("#signIn")
@@ -38,12 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showHomePage()
         })
     } 
-        
-    hideSignIn() 
-
-    function hideHomePage(){
-        categories.style.display = "none"
-    }
+    
+    
 
     function showHomePage(){
         const buttonContainer = document.createElement("div")
@@ -60,66 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(categories)
     } 
 
-
-    // function showMammals(animals) {
-    //     mammalsButton.addEventListener('click', event => {
-    //         const allMammals = animals.filter(animal => animal.category === "Mammal")
-    //         allMammals.forEach(animal => {
-    //             createCards(animal)
-    //         })
-    //         hideHomePage()
-
-    //     })
-    // } 
-
-    // function hideMammals(){
-    //     animalContainer.style.display = "none"
-    // }
-    
-
-    // function showBirds(animals) {
-    //     birdsButton.addEventListener('click', event => {
-    //         const allBirds = animals.filter(animal => animal.category === "Bird")
-    //         allBirds.forEach(animal => {
-    //             createCards(animal)
-    //         })
-    //         hideHomePage()
-    //     })
-    // }
-
-        reptilesButton.addEventListener('click', event => {
-            animalContainer.innerText = ''
-            const allReptiles = allAnimals.flat().filter(animal => {
-                return animal.category === "Reptile"
-            })
-            allReptiles.forEach(reptile => {
-                createCards(reptile)
-            })
-        })
-
-        birdsButton.addEventListener('click', event => {
-            animalContainer.innerText = ''
-            const allBirds = allAnimals.flat().filter(animal => {
-                return animal.category === "Bird"
-            })
-            allBirds.forEach(bird => {
-                createCards(bird)
-            })
-        })
-
-        mammalsButton.addEventListener('click', event => {
-            animalContainer.innerText = ''
-            const allMammals = allAnimals.flat().filter(animal => {
-                return animal.category === "Mammal"
-            })
-            allMammals.forEach(mammal => {
-                createCards(mammal)
-            })
-        })
-
-        
-    
-
    
         function createCards(animal) {
             console.log(animal)
@@ -135,10 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             animalCard.className = "animal-card"
             addAnimalButton.className = "add-animal-button"
-        
-
-            
-            
+    
             commonName.innerText = animal.common_name
             scientificName.innerText = 'Scientific Name: ' + animal.scientific_name
             category.innerText = 'Category: ' + animal.category
@@ -163,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     )
                 }).then(console.log(animalToAdd))
+                showUserPage()
             })
             
             animalCard.appendChild(image)
@@ -170,6 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
             animalContainer.append(animalCard)
             document.body.appendChild(animalContainer)
     }
+
+    // function createUserCards(userAnimals){
+    //     const userCard = document.createElement('div')
+    //     const commonName = document.createElement('h1') 
+
+    //     commonName.innerText = users.animals.common_name
+    //     userCard.appendChild(commonName)
+    //     document.body.appendChild(userCard)
+    // }
+    
+    hideSignIn() 
     retrieveAnimals()
 })
 
