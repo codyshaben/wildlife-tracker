@@ -21,6 +21,32 @@ document.addEventListener('DOMContentLoaded', () => {
     animalContainer.className = "animalContainer"
     userAnimalContainer.className= "userAnimalContainer"
 
+    // Map
+
+    // let map = document.createElement('div')
+    // map.setAttribute('id', 'map')
+    // document.body.appendChild(map)
+    // function initMap() {
+    //     map = new google.maps.Map(document.getElementById('map'), {
+    //         center: {lat: -34.397, lng: 150.644},
+    //         zoom: 8
+    //     })
+    // } 
+
+    // initMap()
+    
+    // if (document.querySelectorAll('#map').length > 0) {
+    //     if(document.querySelector('html').lang)
+    //         lang = document.querySelector('html').lang
+    //     else
+    //         lang = 'en'
+    //     var js_file = document.createElement('script')
+    //     js_file.type = 'text/javascript'
+    //     js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&signed_in=true&key=AIzaSyDJv15R3yL8mWxYp1J1Moj7VRKbaTXVJ9E&language=' + lang
+    //     document.getElementsByTagName('head')[0].appendChild(js_file)
+    // }
+
+
     // event listeners
     
     homeButton.addEventListener("click", event => {
