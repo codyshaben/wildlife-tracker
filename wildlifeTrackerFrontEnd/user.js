@@ -27,11 +27,9 @@
 
 var map;
 function initMap() {
-    // googleMap = document.createElement('div')
-    // googleMap.className = 'map'
   map = new google.maps.Map(document.getElementById('googleMap'),{
-    center: {lat: 40.0519752, lng: -76.314270999999}, // lat/long of center of map
-    zoom: 15, // 8 or 9 is typical zoom 
+    center: {lat: 39.766636, lng: -104.980210}, // lat/long of center of map
+    zoom: 8, // 8 or 9 is typical zoom 
     scrollwheel:  false, // prevent mouse scroll from zooming map. 
     mapTypeControl: true, //default
     mapTypeControlOptions: {
@@ -48,8 +46,22 @@ function initMap() {
     }, 
     fullscreenControl: true
   });
-//   document.body.append(map)
+var marker
+  map.addListener('click', function(e){
+      placeMarker(e.latLng, map);
+  })
+  function placeMarker(position, map) {
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map
+    });
+    map.panTo(position);
+  }
 }
+
+
+
+
 
 
 
