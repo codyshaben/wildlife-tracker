@@ -1,6 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    const allAnimals = []
     const animalURL = 'http://localhost:3000/api/v1/animals'
     const addAnimalsURL = 'http://localhost:3000/api/v1/addAnimal'
     const mammalsButton = document.createElement("button")
@@ -20,15 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hideSignIn()
     })
     
-    fetch(animalURL)
-        .then(response => response.json())
-        .then(response => {
-            console.log(response)
-            showMammals(response)
-            showBirds(response)
-            showReptiles(response)
-        })
-
+    function retrieveAnimals() {
+        fetch(animalURL)
+            .then(response => response.json())
+            .then(animals => {allAnimals.push(animals)
+            })
+    }
+    
+        console.log(allAnimals)
 
     function hideSignIn(){
         signIn = document.querySelector("#signIn")
@@ -60,45 +60,69 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(categories)
     } 
 
-    function showMammals(animals) {
-        mammalsButton.addEventListener('click', event => {
-            const allMammals = animals.filter(animal => animal.category === "Mammal")
-            allMammals.forEach(animal => {
-                createCards(animal)
-            })
-            hideHomePage()
 
-        })
-    } 
+    // function showMammals(animals) {
+    //     mammalsButton.addEventListener('click', event => {
+    //         const allMammals = animals.filter(animal => animal.category === "Mammal")
+    //         allMammals.forEach(animal => {
+    //             createCards(animal)
+    //         })
+    //         hideHomePage()
 
-    function hideMammals(){
-        animalContainer.style.display = "none"
-    }
+    //     })
+    // } 
+
+    // function hideMammals(){
+    //     animalContainer.style.display = "none"
+    // }
     
 
-    function showBirds(animals) {
-        birdsButton.addEventListener('click', event => {
-            const allBirds = animals.filter(animal => animal.category === "Bird")
-            allBirds.forEach(animal => {
-                createCards(animal)
-            })
-            hideHomePage()
-        })
-    }
+    // function showBirds(animals) {
+    //     birdsButton.addEventListener('click', event => {
+    //         const allBirds = animals.filter(animal => animal.category === "Bird")
+    //         allBirds.forEach(animal => {
+    //             createCards(animal)
+    //         })
+    //         hideHomePage()
+    //     })
+    // }
 
-    function showReptiles(animals) {
         reptilesButton.addEventListener('click', event => {
-            const allReptiles = animals.filter(animal => animal.category === "Reptile")
-            allReptiles.forEach(animal => {
-                createCards(animal)
+            animalContainer.innerText = ''
+            const allReptiles = allAnimals.flat().filter(animal => {
+                return animal.category === "Reptile"
             })
-            hideHomePage()
+            allReptiles.forEach(reptile => {
+                createCards(reptile)
+            })
         })
-    } 
 
+        birdsButton.addEventListener('click', event => {
+            animalContainer.innerText = ''
+            const allBirds = allAnimals.flat().filter(animal => {
+                return animal.category === "Bird"
+            })
+            allBirds.forEach(bird => {
+                createCards(bird)
+            })
+        })
+
+        mammalsButton.addEventListener('click', event => {
+            animalContainer.innerText = ''
+            const allMammals = allAnimals.flat().filter(animal => {
+                return animal.category === "Mammal"
+            })
+            allMammals.forEach(mammal => {
+                createCards(mammal)
+            })
+        })
+
+        
+    
 
    
-    function createCards(animal) {
+        function createCards(animal) {
+            console.log(animal)
             const animalCard = document.createElement('div')
             const commonName = document.createElement('h1')
             const scientificName = document.createElement('h4')
@@ -108,10 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = document.createElement('h6')
             const image = document.createElement('img')
             const addAnimalButton = document.createElement('button')
-            addAnimalButton.className = "add-animal-button"
             
-
             animalCard.className = "animal-card"
+            addAnimalButton.className = "add-animal-button"
+        
+
             
             
             commonName.innerText = animal.common_name
@@ -145,6 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
             animalContainer.append(animalCard)
             document.body.appendChild(animalContainer)
     }
+    retrieveAnimals()
 })
+
+
 
 
