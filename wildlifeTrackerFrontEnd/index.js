@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animalContainer.className = "animalContainer"
 
-
     // event listeners
     
     homeButton.addEventListener("click", event => {
@@ -34,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allReptiles.forEach(reptile => {
             createCards(reptile)
         })
+        // const reptilesTitle = document.createElement('h2')
+        // reptilesTitle.innerText = "Reptile's"
+        // animalContainer.prepend(reptilesTitle)
     })
 
     birdsButton.addEventListener('click', event => {
@@ -44,7 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
         allBirds.forEach(bird => {
             createCards(bird)
         })
+        // const birdsTitle = document.createElement('h2')
+        // birdsTitle.innerText = "Bird's"
+        // animalContainer.prepend(birdsTitle)
     })
+
     mammalsButton.addEventListener('click', event => {
         animalContainer.innerText = ''
         const allMammals = allAnimals.flat().filter(animal => {
@@ -53,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allMammals.forEach(mammal => {
             createCards(mammal)
         })
+        // const mammalsTitle = document.createElement('h2')
+        // mammalsTitle.innerText = "Mammal's"
+        // animalContainer.prepend(mammalsTitle)
     })
 
     // functions
@@ -63,13 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => {
             animalContainer.innerText = ''
             response.animals.forEach(animal => {
-                createUserCards(animal)
-                
+                createUserCards(animal)  
             })
             console.log(response.animals)
             categories.style.display = "none"
-
-        })           
+        }) 
+        const userTitle = document.createElement('h2')
+        userTitle.innerText = "Animal's You've Seen!"
+        document.body.append(userTitle)
     } 
 
     function retrieveAnimals() {

@@ -76,6 +76,10 @@ h1 {
     margin-bottom: 0;
 }
 
+h2 {
+    display: block;
+}
+
 h4 {
     margin: 0;
 }
