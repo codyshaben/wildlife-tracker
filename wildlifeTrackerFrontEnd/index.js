@@ -1,3 +1,14 @@
+// function showMap(){
+//     map = document.getElementById("googleMap")
+//     map = new google.maps.Map(document.getElementById("googleMap"), {
+//         center:{ lat: 39.117922, lng: -105.268891},
+//         zoom:7,
+//     }) 
+// } 
+
+// showMap()
+
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +31,39 @@ document.addEventListener('DOMContentLoaded', () => {
     flipCardContainer.className = "flip-card-container"
     animalContainer.className = "animalContainer"
     userAnimalContainer.className= "userAnimalContainer"
+
+    // Map
+
+
+    // let map = document.createElement('div')
+    // map.setAttribute('id', 'map')
+    // document.body.appendChild(map)
+    // function initMap() {
+    //     map = new google.maps.Map(document.getElementById('map'), {
+    //         center: {lat: -34.397, lng: 150.644},
+    //         zoom: 8
+    //     })
+    // } 
+
+    // initMap()
+    
+    // if (document.querySelectorAll('#map').length > 0) {
+    //     if(document.querySelector('html').lang)
+    //         lang = document.querySelector('html').lang
+    //     else
+    //         lang = 'en'
+    //     var js_file = document.createElement('script')
+    //     js_file.type = 'text/javascript'
+    //     js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&signed_in=true&key=AIzaSyDJv15R3yL8mWxYp1J1Moj7VRKbaTXVJ9E&language=' + lang
+    //     document.getElementsByTagName('head')[0].appendChild(js_file)
+    // }
+
+    // function hideMap(){
+    //     map = document.getElementById("googleMap")
+    //     console.log(map)
+    //     map.style.display ="none"
+    // } 
+
 
     // event listeners
     
@@ -85,8 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const userTitle = document.createElement('h2')
         userTitle.className = "userTitle"
         userTitle.innerText = "Animal's You've Seen!"
+        
+        let map = document.getElementById("googleMap")
+        map.style.display= "block"
 
-        userInfo.append(userTitle)
+        const mapTitle = document.createElement('h2')
+        mapTitle.className ='mapTitle'
+        mapTitle.innerText= "Mark the Sighting!"
+
+        map.prepend(mapTitle)
+        userInfo.append(map, userTitle)
         document.body.append(userInfo)
     } 
 
@@ -111,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         buttonContainer.className = "buttonContainer"
         const p = document.createElement("p")
 
+        
         p.innerText = "What did you see?"
         mammalsButton.innerText = "Mammals"
         reptilesButton.innerText = "Reptiles"
@@ -118,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         buttonContainer.append(mammalsButton, reptilesButton, birdsButton)
         categories.append(p, buttonContainer)
-        document.body.appendChild(categories)
+        document.body.append(categories)
     } 
 
         function createCards(animal) {
@@ -252,6 +305,8 @@ document.addEventListener('DOMContentLoaded', () => {
         userInfo.append(flipCardContainer)
         document.body.append(userInfo)
     }
+    initMap()
+    // hideMap()
     hideSignIn() 
     retrieveAnimals()
 })

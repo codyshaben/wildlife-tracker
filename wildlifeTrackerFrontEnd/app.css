@@ -155,29 +155,11 @@ img {
     align-self: center;
 }
 
-/* .userAnimalContainer{
-    display: flex;
-    flex-direction: row;
-    flex-flow: wrap;
-    justify-content: center;
-}
-
-.user-card{
-    display: flex;
-    flex-direction: column;
-    background-color: #0a012f6e; 
-    border-radius: 1rem;
-    padding: 2rem;
-    margin-top: 2rem;
-    font: #020d22;
-    width: 500px;
-    margin: 1rem;
-    border: solid;
-}
 
 .userTitle{
     font-size: 3rem;
-} */ 
+    align-self: center;
+} 
 
 .flip-card-container{
     display: flex;
@@ -238,7 +220,12 @@ img {
     margin-top: 2rem;
   }
 
-
+#googleMap{
+    display: none;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 
 
 
