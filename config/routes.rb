@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       
       post 'users', to: 'users#create'
 
-     
+      delete 'removeAnimal/:animal_id', to: 'users#remove_animal'
       post 'addAnimal', to: 'users#add_animal'
       post "login", to: "authentication#login"
     end
