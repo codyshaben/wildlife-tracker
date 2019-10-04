@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
       resources :animals
-      resources :users
+      resources :users, param: :username
       
       post 'users', to: 'users#create'
 
       delete 'removeAnimal/:animal_id', to: 'users#remove_animal'
       post 'addAnimal', to: 'users#add_animal'
-      post "login", to: "authentication#login"
-    end
-  end
+      post '/auth/login', to: "authentication#login"
+      # get '/*a', to: 'application#not_found'
 
 end
 

@@ -19,14 +19,15 @@
         </nav>
     </header>
         <span class="categories">
-                <form class="signInForm" action="http://localhost:3000/api/v1/users" method="POST">
-
+                <form class="signInForm" action="http://localhost:3000/users" method="POST">
                     <input type="text" name="username" id="username" placeholder="Username"/>
-        
                     <input type="text" name="password" id="password" placeholder="Password"/>
-        
-                    <input type="submit" value="Sign In" id="signIn"/>
-                
+                    <input type="submit" value="Sign In" id="signIn"/> 
+                </form>
+                <form class="loginForm" action="'http://localhost:3000/auth/login'" method='POST'>
+                    <input type="text" name="username" id="username" placeholder="Username"/>
+                    <input type="text" name="password" id="password" placeholder="Password"/>
+                    <input type="submit" value="Login" id="login"/>
                 </form>
             </span>
         <section class="userInfo">

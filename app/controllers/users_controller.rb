@@ -1,4 +1,7 @@
-class Api::V1::UsersController < ApplicationController
+class UsersController < ApplicationController
+    before_action :authorize_request, except: :create
+    before_action :find_user, except: %i[create index]
+
     def index
         @users = User.all 
         render json: @users, include: :animals
@@ -12,18 +15,22 @@ class Api::V1::UsersController < ApplicationController
     
     def create
         @user = User.create(user_params)
-        # if @user.save
-        #     render json: @user, status: :created, location: api_v1_users_path(@user)
-        # else
-        #     render json: @user.errors
-        # end
+        if @user.save
+            render json: @user, status: :created
+        else
+            render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def update
-        @user = User.find(params[:id])
-        @user.update(user_params)
+        unless @user.update(user_params)
+          render json: { errors: @user.errors.full_messages },
+                 status: :unprocessable_entity
+        end
+    end
 
-        render json: { user_id: @user.id }
+    def destroy
+        @user.destroy
     end
     
     def remove_animal
@@ -42,6 +49,12 @@ class Api::V1::UsersController < ApplicationController
     end
 
     private
+
+    def find_user
+        @user = User.find_by_username!(params[:_username])
+        rescue ActiveRecord::RecordNotFound
+            render json: { errors: 'User not found' }, status: :not_found
+    end
 
     def user_params
         params.permit(:username, :password)

@@ -219,6 +219,10 @@ img {
   .flip-card-back > h1, h4, h5, p, h6{
     margin-top: 2rem;
   }
+/* 
+  .loginForm {
+      visibility: hidden;
+  } */
 
 #googleMap{
     display: none;
