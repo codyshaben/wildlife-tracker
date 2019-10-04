@@ -1,15 +1,3 @@
-// function showMap(){
-//     map = document.getElementById("googleMap")
-//     map = new google.maps.Map(document.getElementById("googleMap"), {
-//         center:{ lat: 39.117922, lng: -105.268891},
-//         zoom:7,
-//     }) 
-// } 
-
-// showMap()
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -17,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addUserURL = 'http://localhost:3000/auth/login'
     const animalURL = 'http://localhost:3000/animals'
     const addAnimalsURL = 'http://localhost:3000/addAnimal'
-    const removeAnimalURL = `http://localhost:3000/removeAnimal`
+    const removeAnimalURL = 'http://localhost:3000/removeAnimal/'
     const userAnimalsURL = 'http://localhost:3000/users/1'
     const mammalsButton = document.createElement("button")
     const reptilesButton = document.createElement("button")
@@ -33,39 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animalContainer.className = "animalContainer"
     userAnimalContainer.className= "userAnimalContainer"
 
-    // Map
-
-
-    // let map = document.createElement('div')
-    // map.setAttribute('id', 'map')
-    // document.body.appendChild(map)
-    // function initMap() {
-    //     map = new google.maps.Map(document.getElementById('map'), {
-    //         center: {lat: -34.397, lng: 150.644},
-    //         zoom: 8
-    //     })
-    // } 
-
-    // initMap()
     
-    // if (document.querySelectorAll('#map').length > 0) {
-    //     if(document.querySelector('html').lang)
-    //         lang = document.querySelector('html').lang
-    //     else
-    //         lang = 'en'
-    //     var js_file = document.createElement('script')
-    //     js_file.type = 'text/javascript'
-    //     js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&signed_in=true&key=AIzaSyDJv15R3yL8mWxYp1J1Moj7VRKbaTXVJ9E&language=' + lang
-    //     document.getElementsByTagName('head')[0].appendChild(js_file)
-    // }
-
-    // function hideMap(){
-    //     map = document.getElementById("googleMap")
-    //     console.log(map)
-    //     map.style.display ="none"
-    // } 
-
-
     // event listeners
     
     homeButton.addEventListener("click", event => {
@@ -74,8 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animalContainer.innerText = ''
         userInfo.innerText = ''
         showHomePage()
-        // hideMammals()
-        // hideSignIn()
+        categories.style.display = 'flex'
     })
 
     reptilesButton.addEventListener('click', event => {
@@ -108,24 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    // functions
-
-    // function getUserToken() {
-    //     fetch(addUserURL, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }, 
-    //         body: {
-    //             username: username,
-    //             password: password
-    //         }
-    //     })
-    //     .then(response => response.json())
-    //     .then(response => console.log(response))
-    // }
-
-    // getUserToken()
 
     function showUserPage() {
         fetch(userAnimalsURL)
@@ -161,15 +98,28 @@ document.addEventListener('DOMContentLoaded', () => {
             })
     }
 
-    function hideSignIn(){
-        signIn = document.querySelector("#signIn")
-        form = document.querySelector(".signInForm")
-        signIn.addEventListener('click', event => {
+    function hideSignUp(){
+        logInForm = document.querySelector(".loginForm")
+        logInForm.style.display = "none"
+        signUp = document.querySelector("#signUp")
+        form = document.querySelector(".signUpForm")
+        signUp.addEventListener('click', event => {
             form.style.display = "none"
-            showHomePage()
+
+            logIn()
         })
     } 
 
+    function logIn(){
+        logIn = document.querySelector("#login")
+        logInForm = document.querySelector(".loginForm")
+        logInForm.style.display = "block"
+        logIn.addEventListener('click', event => {
+            logInForm.style.display = 'none'
+            showHomePage()
+        })
+
+    }
    
 
     function showHomePage(){
@@ -222,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 
                     body: JSON.stringify(
                         {
-                            user_id: 1, 
+                            user_id: 1,  
                             animal_id: animal.id
                         }
                     )
@@ -259,20 +209,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         removeAnimalButton.addEventListener('click',event => { 
             const animalToRemove = userFlipCard
-            // event.target.parentNode
             console.log(animalToRemove)
             fetch(removeAnimalURL + animal.id, {
                 method: 'DELETE',
             }).then(animalToRemove.remove())
         })
 
-        // userCard.className = "user-card"
-
         removeAnimalButton.innerText = "Remove Animal"
         commonName.innerText = animal.common_name
         scientificName.innerText = 'Scientific Name: ' + animal.scientific_name
         category.innerText = 'Category: ' + animal.category
-        // description.innerText = animal.description
         approachable.innerText = animal.approachable
         status.innerText = animal.status
         image.src = animal.image
@@ -287,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initMap()
     // hideMap()
-    hideSignIn() 
+    hideSignUp() 
     retrieveAnimals()
 })
 
