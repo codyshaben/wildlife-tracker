@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
       resources :animals
-      resources :users, param: :username
+      resources :users
+      # , param: :username
       
       post 'users', to: 'users#create'
 
