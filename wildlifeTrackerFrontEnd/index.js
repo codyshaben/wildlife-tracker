@@ -14,10 +14,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     const allAnimals = []
-    const animalURL = 'http://localhost:3000/api/v1/animals'
-    const addAnimalsURL = 'http://localhost:3000/api/v1/addAnimal'
-    const removeAnimalURL = `http://localhost:3000/api/v1/removeAnimal/`
-    const userAnimalsURL = 'http://localhost:3000/api/v1/users/1'
+    const addUserURL = 'http://localhost:3000/auth/login'
+    const animalURL = 'http://localhost:3000/animals'
+    const addAnimalsURL = 'http://localhost:3000/addAnimal'
+    const removeAnimalURL = `http://localhost:3000/removeAnimal`
+    const userAnimalsURL = 'http://localhost:3000/users/1'
     const mammalsButton = document.createElement("button")
     const reptilesButton = document.createElement("button")
     const birdsButton = document.createElement("button")
@@ -109,6 +110,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // functions
 
+    // function getUserToken() {
+    //     fetch(addUserURL, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }, 
+    //         body: {
+    //             username: username,
+    //             password: password
+    //         }
+    //     })
+    //     .then(response => response.json())
+    //     .then(response => console.log(response))
+    // }
+
+    // getUserToken()
+
     function showUserPage() {
         fetch(userAnimalsURL)
         .then(response => response.json())
@@ -151,6 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showHomePage()
         })
     } 
+
+   
 
     function showHomePage(){
         const buttonContainer = document.createElement("div")
