@@ -14,10 +14,17 @@ Welcome to Wildlife Tracker! This app allows you to login and keep track of diff
     - go to config/initializers/cors.rb
     - uncomment out and make sure origins is set    to '*'
     - ![example of cors.rb file](cors-screenshot.png)
+
+## Database and Google Maps API
+The animals that are seen on the app are pulled from a seeded database. The map feature and marking location was used by accessing the google maps API. 
+
+
 ## Running the Program
 1. Open the 'wildlife tracker' repo in your terminal and run 'rails s' 
 2. In another terminal open up wildlifeTrackerFrontEnd folder and run 'lite-server'
 
 ## Contributors
 This app was built by Cody Shaben and Catherine Clause. If you want to access this app, you can clone from: https://github.com/codyshaben/wildlife-tracker .
+
+
     
